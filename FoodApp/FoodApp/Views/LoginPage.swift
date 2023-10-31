@@ -1,30 +1,28 @@
-//
-//  ContentView.swift
-//  FoodApp
-//
-//  Created by Student on 30/10/23.
-//
-
 import SwiftUI
 
-struct ContentView: View {
+struct LoginPage: View {
+    @State private var username: String = ""
+    @State private var password: String = ""
     @State private var isButton = false
+    
     var body: some View {
         
         NavigationView{
             ZStack{
                 Color(.red).opacity(0.7).ignoresSafeArea()
                 VStack{
-                    Image("Image").resizable().scaleEffect(0.7)
-                    Text("Livro de Receitas")
-                        .font(.title)
-                        .foregroundColor(.white)
-                        .fontWeight(.bold)
+                    Image("Image").resizable().frame(width: 150,height: 150).scaleEffect(1)
+                    Text("Login").font(.title).foregroundColor(.white).fontWeight(.bold)
                     
-                    NavigationLink(destination: LoginPage(),isActive: $isButton){
+                    TextField("Email", text: $username).font(.title3).padding(.horizontal,30)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    TextField("Senha", text: $password).font(.title3).padding(.horizontal,30)
+                        .textFieldStyle(.roundedBorder)
+                    
+                    NavigationLink(destination: ChatGPTView(),isActive: $isButton){
                        
                         Button(action: {
-                           
                             isButton = true
                             
                         }){
@@ -34,9 +32,7 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .background(.yellow)
                                 .cornerRadius(10)
-                                .padding(.top,100)
-
-                                
+                                .padding(.top,10)
                         }
                         
                     }
@@ -46,9 +42,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct LoginPage_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        LoginPage()
     }
 }
-
