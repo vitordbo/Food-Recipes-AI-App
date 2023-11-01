@@ -23,7 +23,7 @@ struct TabViewHome: View {
                         Label("Receitas IA", systemImage: "ellipsis.message.fill")
                     }
                     
-                GroceryListView()
+                GroceryListDetailsView()
                     .tabItem {
                         Label("Lista de compras", systemImage: "checklist")
                     }
