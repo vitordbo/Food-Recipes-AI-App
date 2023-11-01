@@ -20,7 +20,7 @@ struct LoginPage: View {
                     TextField("Senha", text: $password).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)
                     
-                    NavigationLink(destination: ChatGPTView(),isActive: $isButton){
+                    NavigationLink(destination: TabViewHome(),isActive: $isButton){
                        
                         Button(action: {
                             isButton = true
