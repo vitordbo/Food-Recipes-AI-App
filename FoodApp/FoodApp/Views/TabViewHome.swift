@@ -18,20 +18,20 @@ struct TabViewHome: View {
                         Label("Home", systemImage: "house.fill")
                     }
 
-                    ChatGPTView()
-                        .tabItem {
-                            Label("Receitas IA", systemImage: "ellipsis.message.fill")
-                        }
+                ChatGPTView()
+                    .tabItem {
+                        Label("Receitas IA", systemImage: "ellipsis.message.fill")
+                    }
                     
-                    GroceryListView()
+                GroceryListView()
                     .tabItem {
                         Label("Lista de compras", systemImage: "checklist")
                     }
                 
-                    ChatGPTView()
+                FriendsView()
                     .tabItem {
-                        Label("Perfil", systemImage: "person.fill")
-                    }
+                    Label("Amigos", systemImage: "person.3.fill")
+                }
             }
         }
     }

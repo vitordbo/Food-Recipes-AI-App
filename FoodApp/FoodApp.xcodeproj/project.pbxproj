@@ -19,6 +19,7 @@
 		3F8706312AF0825D001E0D0A /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8706302AF0825D001E0D0A /* LoginPage.swift */; };
 		3FB1472D2AF1C9DB005A05CD /* GroceryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1472C2AF1C9DB005A05CD /* GroceryListView.swift */; };
 		3FB1472F2AF1CC46005A05CD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB1472E2AF1CC46005A05CD /* HomeView.swift */; };
+		3FB147312AF1D01D005A05CD /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB147302AF1D01D005A05CD /* FriendsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		3F8706302AF0825D001E0D0A /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		3FB1472C2AF1C9DB005A05CD /* GroceryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroceryListView.swift; sourceTree = "<group>"; };
 		3FB1472E2AF1CC46005A05CD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		3FB147302AF1D01D005A05CD /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 				3F8706302AF0825D001E0D0A /* LoginPage.swift */,
 				3FB1472C2AF1C9DB005A05CD /* GroceryListView.swift */,
 				3FB1472E2AF1CC46005A05CD /* HomeView.swift */,
+				3FB147302AF1D01D005A05CD /* FriendsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FB147312AF1D01D005A05CD /* FriendsView.swift in Sources */,
 				3FB1472F2AF1CC46005A05CD /* HomeView.swift in Sources */,
 				3F87062A2AF079D7001E0D0A /* Constants.swift in Sources */,
 				3F8706252AF06AAE001E0D0A /* TabViewHome.swift in Sources */,
