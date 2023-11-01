@@ -6,8 +6,6 @@ struct LoginPage: View {
     @State private var isButton = false
     
     var body: some View {
-        
-        NavigationView{
             ZStack{
                 Color(.red).opacity(0.7).ignoresSafeArea()
                 VStack{
@@ -20,26 +18,24 @@ struct LoginPage: View {
                     TextField("Senha", text: $password).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)
                     
-                    NavigationLink(destination: TabViewHome(),isActive: $isButton){
-                       
-                        Button(action: {
-                            isButton = true
-                            
-                        }){
-                            HStack{
-                                Text("Entrar               ").fontWeight(.bold).font(.title3)
-                            }.padding()
-                                .foregroundColor(.white)
-                                .background(.yellow)
-                                .cornerRadius(10)
-                                .padding(.top,10)
-                        }
-                        
-                    }
+                    Button(action: {
+                                            isButton = true
+                                        }, label: {
+                                            HStack{
+                                                Text("Entrar").fontWeight(.bold).font(.title3)
+                                            }.padding()
+                                                .foregroundColor(.white)
+                                                .background(.yellow)
+                                                .cornerRadius(10)
+                                                .padding(.top,10)
+                                        }).navigationDestination(isPresented: $isButton){
+                                            TabViewHome()
+                                            Text("")
+                                                .hidden()
+                                        }
                 }
             }
         }
-    }
 }
 
 struct LoginPage_Previews: PreviewProvider {

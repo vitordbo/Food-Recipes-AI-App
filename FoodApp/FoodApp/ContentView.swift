@@ -11,7 +11,7 @@ struct ContentView: View {
     @State private var isButton = false
     var body: some View {
         
-        NavigationView{
+        NavigationStack{
             ZStack{
                 Color(.red).opacity(0.7).ignoresSafeArea()
                 VStack{
@@ -21,25 +21,21 @@ struct ContentView: View {
                         .foregroundColor(.white)
                         .fontWeight(.bold)
                     
-                    NavigationLink(destination: LoginPage(),isActive: $isButton){
-                       
-                        Button(action: {
-                           
-                            isButton = true
-                            
-                        }){
-                            HStack{
-                                Text("Entrar               ").fontWeight(.bold).font(.title3)
-                            }.padding()
-                                .foregroundColor(.white)
-                                .background(.yellow)
-                                .cornerRadius(10)
-                                .padding(.top,100)
-
-                                
-                        }
-                        
-                    }
+                    Button(action: {
+                                            isButton = true
+                                        }, label: {
+                                            HStack{
+                                                Text("Entrar").fontWeight(.bold).font(.title3)
+                                            }.padding()
+                                                .foregroundColor(.white)
+                                                .background(.yellow)
+                                                .cornerRadius(10)
+                                                .padding(.top,10)
+                                        }).navigationDestination(isPresented: $isButton){
+                                            LoginPage()
+                                            Text("")
+                                                .hidden()
+                                        }
                 }
             }
         }
