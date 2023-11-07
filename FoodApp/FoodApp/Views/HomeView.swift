@@ -9,21 +9,41 @@ import SwiftUI
 
 struct HomeView: View {
     @State private var searchText = ""
-    
     var body: some View {
+       
         ZStack{
-          NavigationView {
-              List {
-                  ImageSlider()
-                      .frame(height: 200)
-                      .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-              }
-              Spacer()
-          }
-     
+            
+            
+            //Color(.red).opacity(0.7).ignoresSafeArea()
             ScrollView {
-                VStack {
-                    Text("Bem-vindo").padding(.top, 40)
+                
+            VStack {
+                    
+                TextField( "Pesquis sua receita",text: $searchText).multilineTextAlignment(.center)
+                    .font(.title3)
+                    .padding(.horizontal,10)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(height: 10)
+                    .padding(.top,20)
+                
+                
+                    
+                    
+              NavigationView {
+                  List {
+                      ImageSlider()
+                          .frame(height: 200)
+                          .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                  }
+                  
+              }.padding(.top,20)
+              .navigationBarBackButtonHidden(true)
+              .navigationBarHidden(true)
+     
+            
+                
+                  
+                    Text("Bem-vindo")
                     Text("Isso foi oq vc viu recentemente")
                     
                     // colocar em um for each para aparecer varias diferentes
@@ -47,9 +67,9 @@ struct HomeView: View {
                             Text("⭐️⭐️⭐️⭐️⭐️")
                         }.padding(.trailing, 30)
                     }
-                }.padding(.top, 200)
+                }
             }
-      }
+        }
     }
 }
     
