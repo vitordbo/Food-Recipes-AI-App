@@ -7,31 +7,18 @@ struct LoginPage: View {
     
     var body: some View {
             ZStack{
-                Color(.red).opacity(0.7).ignoresSafeArea(.all)
+                Color(.red).opacity(0.7).ignoresSafeArea()
                 VStack{
-                    Image("Image")
-                        .resizable()
-                        .frame(width: 150,height: 150)
-                        .scaleEffect(1)
+                    Image("Image").resizable().frame(width: 150,height: 150).scaleEffect(1)
+                    Text("Login").font(.title).foregroundColor(.white).fontWeight(.bold)
                     
-                    Text("Login").font(.title).foregroundColor(.white)
-                        .fontWeight(.bold)
-                    
-                    TextField("Email", text: $username).font(.title3)
-                        .padding(.horizontal,30)
+                    TextField("Email", text: $username).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)
-                        .frame(height: 10)
-                        
                     
-                    SecureField("Senha", text: $password)
-                        .font(.title3)
-                        .padding(.horizontal,30)
+                    TextField("Senha", text: $password).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)
-                        .frame(height: 10)
-                        .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
                     
-                    Button(
-                        action: {
+                    Button(action: {
                                             isButton = true
                                         }, label: {
                                             HStack{
@@ -43,12 +30,11 @@ struct LoginPage: View {
                                                 .padding(.top,10)
                                         }).navigationDestination(isPresented: $isButton){
                                             TabViewHome()
-                                            Text("").hidden()
+                                            Text("")
+                                                .hidden()
                                         }
                 }
             }
-            .navigationBarBackButtonHidden(true)
-            .navigationBarHidden(true)
         }
 }
 
