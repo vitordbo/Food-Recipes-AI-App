@@ -47,6 +47,9 @@ struct RecipeSearchView: View {
                             .font(.subheadline)
                     }
                     
+                    Text("") // pular linha 
+                    Link("Acesse mais detalhes", destination: URL(string: recipe.url)!)
+                    
                     AsyncImage(url: URL(string: recipe.image))
                 }
             }
