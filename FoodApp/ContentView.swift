@@ -36,7 +36,7 @@ struct ContentView: View {
                                             Text("")
                                                 .hidden()
                                         }
-                }
+                }.padding(.bottom,20)
             }
         }
     }

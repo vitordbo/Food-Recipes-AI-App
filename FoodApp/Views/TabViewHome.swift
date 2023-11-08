@@ -11,28 +11,29 @@ import SwiftUI
 
 struct TabViewHome: View {
     var body: some View {
-        VStack{
-            TabView{
-               HomeView() // pipocanado com home
-                    .tabItem {
-                        Label("Home", systemImage: "house.fill")
-                    }
+        
+        TabView{
+            Group{
+                HomeView() // pipocanado com home
+                     .tabItem {
+                         Label("Home", systemImage: "house.fill")
+                     }
 
-                ChatGPTView()
-                    .tabItem {
-                        Label("Receitas IA", systemImage: "ellipsis.message.fill")
-                    }
-                    
-                GroceryListDetailsView()
-                    .tabItem {
-                        Label("Lista de compras", systemImage: "checklist")
-                    }
-                
-                FriendsView()
-                    .tabItem {
-                    Label("Amigos", systemImage: "person.3.fill")
-                }
-            }
+                 ChatGPTView()
+                     .tabItem {
+                         Label("Receitas IA", systemImage: "ellipsis.message.fill")
+                     }
+                     
+                 GroceryListDetailsView()
+                     .tabItem {
+                         Label("Lista de compras", systemImage: "checklist")
+                     }
+                 
+                 FriendsView()
+                     .tabItem {
+                     Label("Amigos", systemImage: "person.3.fill")
+                 }
+            }.toolbarBackground(.visible, for: .tabBar)
         }
     }
 }

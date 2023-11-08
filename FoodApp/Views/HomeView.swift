@@ -28,22 +28,20 @@ struct HomeView: View {
                         .padding(.top,20)
                     Button(
                         action: {
-                                isButton = true
-                            }, label: {
-                                HStack{
-                                    Image(systemName: "magnifyingglass")
-                                }.padding()
-                                    .foregroundColor(.white)
-                                    .background(.yellow)
-                                    .cornerRadius(10)
-                                    .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 10))
-                            }).navigationDestination(isPresented: $isButton){
-                                RecipeSearchView(queryFromHome: searchText)
-                                Text("").hidden()
-                            }
+                            isButton = true
+                        }, label: {
+                            HStack{
+                                Image(systemName: "magnifyingglass")
+                            }.padding()
+                                .foregroundColor(.white)
+                                .background(.yellow)
+                                .cornerRadius(10)
+                                .padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 10))
+                        }).navigationDestination(isPresented: $isButton){
+                            RecipeSearchView(queryFromHome: searchText)
+                            Text("").hidden()
+                        }
                 }
-              
-                    
                     
               NavigationView {
                   List {
