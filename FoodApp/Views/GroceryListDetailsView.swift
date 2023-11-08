@@ -8,18 +8,19 @@
 import SwiftUI
 
 struct ChecklistItem: Identifiable {
-  let id = UUID()
-  var name: String
-  var isChecked: Bool = false
+    let id = UUID()
+    var name: String
+    var quantidade: Int
+    var isChecked: Bool = false
 }
 
 struct GroceryListDetailsView: View {
     @State var checklistItems = [
-      ChecklistItem(name: "Walk the dog"),
-      ChecklistItem(name: "Brush my teeth"),
-      ChecklistItem(name: "Learn iOS development", isChecked: true),
-      ChecklistItem(name: "Soccer practice"),
-      ChecklistItem(name: "Eat ice cream", isChecked: true),
+      ChecklistItem(name: "Walk the dog", quantidade: 10),
+      ChecklistItem(name: "Brush my teeth", quantidade: 15),
+      ChecklistItem(name: "Learn iOS development", quantidade: 2, isChecked: true),
+      ChecklistItem(name: "Soccer practice", quantidade: 4),
+      ChecklistItem(name: "Eat ice cream", quantidade: 55, isChecked: true),
     ]
     
     var body: some View {
@@ -28,6 +29,7 @@ struct GroceryListDetailsView: View {
           ForEach(checklistItems) { checklistItem in
             HStack {
               Text(checklistItem.name)
+                Text("\(checklistItem.quantidade)")
               Spacer()
               Text(checklistItem.isChecked ? "✅" : "🔲")
             }
