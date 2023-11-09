@@ -58,7 +58,6 @@ struct EdamamIngredient: Decodable { // Define a separate ingredient model
     let text: String
     let quantity: Double?
     let measure: String?
-    // Add other properties as needed
 }
 
 struct TotalNutrients: Decodable {

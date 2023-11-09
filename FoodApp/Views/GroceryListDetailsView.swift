@@ -95,4 +95,3 @@ struct GroceryListDetailsView_Previews: PreviewProvider {
         GroceryListDetailsView()
     }
 }
-

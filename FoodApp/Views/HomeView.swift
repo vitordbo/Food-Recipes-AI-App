@@ -43,8 +43,6 @@ struct HomeView: View {
                             }
                     }
                     
-                    
-                    
                     NavigationView {
                         List {
                             ImageSlider()

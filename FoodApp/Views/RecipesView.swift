@@ -20,19 +20,19 @@ struct RecipeSearchView: View {
     
     // Crie uma array com as receitas predefinidas, incluindo a primeira que você deseja exibir
     let predefinedRecipes: [EdamamRecipe] = [
-            EdamamRecipe(label: "Pipoca de chocolate",
+            EdamamRecipe(label: "Pipoca de chocolate crocante",
                          ingredients: [EdamamIngredient.init(text: "1 xícara de milho para pipoca de boa qualidade", quantity: 10, measure: ""),
                                        EdamamIngredient.init(text: "6 colheres de sopa de açúcar cristal", quantity: 10, measure: ""),
-                                       EdamamIngredient.init(text: "3 colheres de achocolatado em pó de boa qualidade", quantity: 10, measure: ""),
+                                       EdamamIngredient.init(text: "3 colheres de achocolatado em pó", quantity: 10, measure: ""),
                                        EdamamIngredient.init(text: "Água", quantity: 10, measure: "")],
-                         url: "https://www.tudogostoso.com.br/receita/11371-pipoca-de-chocolate.html", image: "https://www.receitasdemae.com.br/wp-content/uploads/2010/05/pipoca-de-chocolate.jpg", calories: 150, totalTime: 10, totalNutrients: TotalNutrients(
-                            ENERC_KCAL: Enerc_Kcal(label: "Energy", quantity: 805.25, unit: "kcal"),
-                            FASAT: Fasat(label: "Saturated Fat", quantity: 2.31, unit: "g"),
+                         url: "https://www.tudogostoso.com.br/receita/11371-pipoca-de-chocolate.html", image: "https://www.receitasdemae.com.br/wp-content/uploads/2010/05/pipoca-de-chocolate.jpg", calories: 477, totalTime: 20, totalNutrients: TotalNutrients(
+                            ENERC_KCAL: Enerc_Kcal(label: "Energy", quantity: 477, unit: "kcal"),
+                            FASAT: Fasat(label: "Saturated Fat", quantity: 18, unit: "g"),
                             FATRN: Fatrn(label: "Trans Fat", quantity: 0.0, unit: "g"),
-                            CHOCDF: Chocdf(label: "Carbohydrates", quantity: 25.0, unit: "g"),
-                            PROCNT: Procnt(label: "Protein", quantity: 8.0, unit: "g"),
-                            NA: Na(label: "Sodium", quantity: 500.0, unit: "mg"),
-                            FIBTG: Fibtg(label: "Dietary Fiber", quantity: 4.5, unit: "g")
+                            CHOCDF: Chocdf(label: "Carbohydrates", quantity: 46, unit: "g"),
+                            PROCNT: Procnt(label: "Protein", quantity: 6.2, unit: "g"),
+                            NA: Na(label: "Sodium", quantity: 10.80, unit: "mg"),
+                            FIBTG: Fibtg(label: "Dietary Fiber", quantity: 3.7, unit: "g")
                          )
             )
         ]
@@ -61,18 +61,33 @@ struct RecipeSearchView: View {
     var body: some View {
         
         VStack {
-            TextField("Search for a recipe", text: $query)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
             
-            Button("Search") {
-                searchForRecipes()
+            HStack{
+                TextField("Pesquise qualquer receita", text: $query)
+                    .multilineTextAlignment(.center)
+                        .font(.title3)
+                        .padding(.horizontal,10)
+                        .textFieldStyle(.roundedBorder)
+                        .frame(height: 10)
+                Button(
+                    action: {
+                        isButton = true
+                        searchForRecipes()
+                    }, label: {
+                        HStack{
+                            Image(systemName: "magnifyingglass")
+                        }.padding()
+                            .foregroundColor(.white)
+                            .background(.yellow)
+                            .cornerRadius(10)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
+                    })
+                        Text("").hidden()
             }
-            .padding()
+          
+            
             ScrollView{
-                // Combine os dados predefinidos com os dados da API
-                
-                VStack{
+                VStack(spacing: 10) {
                     ForEach(predefinedRecipes + recipes, id: \.label) { recipe in
                         VStack(alignment: .leading) {
                             Text(recipe.label)
@@ -94,27 +109,27 @@ struct RecipeSearchView: View {
                             
                             
                         }
-                        HStack {
+                        HStack(spacing: 10) {
                             Button(action: {
                                 isButton = true
-                                // Implemente a lógica para favoritar o item aqui
-                                // Por exemplo, adicione o item a uma lista de favoritos
                             }, label: {
                                 
                                 Image(systemName: "heart.fill")
                                     .resizable()
                                     .frame(width: 35,height: 35)
                                     .foregroundColor(.red)
-                            }).padding(.horizontal,10)
+                            })
                             
                             Button(action: {
-                                // Ação para visualizar o item
-                            }, label: {
+                                if let url = URL(string: recipe.url) {
+                                            UIApplication.shared.open(url)
+                                        }                            },
+                                   label: {
                                 Image(systemName: "magnifyingglass")
                                     .resizable()
                                     .frame(width: 35,height: 35)
                                     .foregroundColor(.yellow)
-                            }).padding(.horizontal,10)
+                            })
                             
                             Button(action: {
                                 selectedRecipe = recipe
@@ -128,16 +143,20 @@ struct RecipeSearchView: View {
                                 RecipeDetailsView(recipe: selectedRecipe)
                                 Text("").hidden()
                             }
-
                         }
+                            .padding(15) // Adicionando espaçamento entre as receitas
+                           .background(Color.white) // Definindo um fundo branco
+                           .cornerRadius(10) // Adicionando cantos arredondados
+                           .shadow(color: Color.gray.opacity(0.5), radius: 5, x: 0, y: 2) // Adicionando sombra sutil
+                            }
                     }
+                .padding(5)
                 }
             }
             .onAppear {
                 searchForRecipes()
             }
         }
-    }
     /* codigo geral sem o mocado
      //
      //  Pesquisar.swift
