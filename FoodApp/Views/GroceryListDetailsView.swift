@@ -1,3 +1,4 @@
+
 //
 //  GroceryListView.swift
 //  FoodApp
@@ -16,52 +17,67 @@ struct ChecklistItem: Identifiable {
 
 struct GroceryListDetailsView: View {
     @State var checklistItems = [
-      ChecklistItem(name: "Walk the dog", quantidade: 10),
-      ChecklistItem(name: "Brush my teeth", quantidade: 15),
-      ChecklistItem(name: "Learn iOS development", quantidade: 2, isChecked: true),
-      ChecklistItem(name: "Soccer practice", quantidade: 4),
-      ChecklistItem(name: "Eat ice cream", quantidade: 55, isChecked: true),
+        ChecklistItem(name: "Walk the dog", quantidade: 10),
+        ChecklistItem(name: "Brush my teeth", quantidade: 15),
+        ChecklistItem(name: "Learn iOS development", quantidade: 2, isChecked: true),
+        ChecklistItem(name: "Soccer practice", quantidade: 4),
+        ChecklistItem(name: "Eat ice cream", quantidade: 55, isChecked: true),
     ]
+    //   @StateObject var x : MVShopList
+    @State var usuario: Pessoa? = nil
+    
+    
+     func deleteListItem(whichElement: IndexSet) {
+        self.usuario?.compras.remove(atOffsets: whichElement)
+        }
+    
+     func moveListItem(whichElement: IndexSet, destination: Int) {
+        self.usuario?.compras.move(fromOffsets: whichElement, toOffset: destination)
+        }
     
     var body: some View {
-      NavigationView {
-        List {
-          ForEach(checklistItems) { checklistItem in
-            HStack {
-              Text(checklistItem.name)
-                Text("\(checklistItem.quantidade)")
-              Spacer()
-              Text(checklistItem.isChecked ? "✅" : "🔲")
+        NavigationView{
+            VStack{
+                if(usuario != nil){
+                    List {
+                        ForEach(self.usuario!.compras, id: \.name) { checklistItem in
+                            HStack {
+                                Text(checklistItem.name!).foregroundColor(.cyan)
+                                Text("\(checklistItem.quantity!)")
+                                Spacer()
+                                Text(checklistItem.isChecked! ? "✅" : "🔲")
+                            }
+                            .onTapGesture {
+                                if let matchingIndex = self.usuario!.compras.firstIndex(where: { $0.name == checklistItem.name }) {
+                                    self.usuario?.compras[matchingIndex].isChecked!.toggle()
+                                }
+                            }
+                        }
+                        .onDelete(perform: self.deleteListItem)
+                        .onMove(perform: self.moveListItem)
+                    }
+                    .navigationBarItems(trailing: HStack{
+                        EditButton()
+                    })
+                    .navigationBarTitle("Lista de compras")
+                }
+            }.onAppear(){
+                
+                print(User.usuario)
+                
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: true){ a in
+                    self.usuario = (User.usuario)
+                    a.invalidate()
+                }
             }
-            .onTapGesture {
-              if let matchingIndex = self.checklistItems.firstIndex(where: { $0.id == checklistItem.id }) {
-                self.checklistItems[matchingIndex].isChecked.toggle()
-              }
-            }
-
-          }
-          .onDelete(perform: deleteListItem)
-          .onMove(perform: moveListItem)
         }
-        .navigationBarItems(trailing: EditButton())
-        .navigationBarTitle("Lista de compras")
-      }
-    }
-    
-    // Methods
-    // =======
-
-    func deleteListItem(whichElement: IndexSet) {
-      checklistItems.remove(atOffsets: whichElement)
-    }
-
-    func moveListItem(whichElement: IndexSet, destination: Int) {
-      checklistItems.move(fromOffsets: whichElement, toOffset: destination)
     }
 }
+
 
 struct GroceryListDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         GroceryListDetailsView()
     }
 }
+
