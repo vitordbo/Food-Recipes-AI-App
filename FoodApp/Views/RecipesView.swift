@@ -16,7 +16,7 @@ struct RecipeSearchView: View {
     private let edamamService = EdamamService()
     @State var cancellables = Set<AnyCancellable>()
     @State private var isButton = false
-    @State private var selectedRecipe: EdamamRecipe? // Variável para armazenar o item selecionado
+    @State private var selectedRecipe: EdamamRecipe // Variável para armazenar o item selecionado
     
     // Crie uma array com as receitas predefinidas, incluindo a primeira que você deseja exibir
     let predefinedRecipes: [EdamamRecipe] = [
@@ -40,6 +40,21 @@ struct RecipeSearchView: View {
     init(queryFromHome: String) {
         self.queryFromHome = queryFromHome
         self._query = State(initialValue: queryFromHome)
+        selectedRecipe = (EdamamRecipe(label: "Pipoca de chocolate",
+                    ingredients: [EdamamIngredient.init(text: "1 xícara de milho para pipoca de boa qualidade", quantity: 10, measure: ""),
+                                  EdamamIngredient.init(text: "6 colheres de sopa de açúcar cristal", quantity: 10, measure: ""),
+                                  EdamamIngredient.init(text: "3 colheres de achocolatado em pó de boa qualidade", quantity: 10, measure: ""),
+                                  EdamamIngredient.init(text: "Água", quantity: 10, measure: "")],
+                    url: "https://www.tudogostoso.com.br/receita/11371-pipoca-de-chocolate.html", image: "https://www.receitasdemae.com.br/wp-content/uploads/2010/05/pipoca-de-chocolate.jpg", calories: 150, totalTime: 10, totalNutrients: TotalNutrients(
+                       ENERC_KCAL: Enerc_Kcal(label: "Energy", quantity: 805.25, unit: "kcal"),
+                       FASAT: Fasat(label: "Saturated Fat", quantity: 2.31, unit: "g"),
+                       FATRN: Fatrn(label: "Trans Fat", quantity: 0.0, unit: "g"),
+                       CHOCDF: Chocdf(label: "Carbohydrates", quantity: 25.0, unit: "g"),
+                       PROCNT: Procnt(label: "Protein", quantity: 8.0, unit: "g"),
+                       NA: Na(label: "Sodium", quantity: 500.0, unit: "mg"),
+                       FIBTG: Fibtg(label: "Dietary Fiber", quantity: 4.5, unit: "g")
+                    )
+     )  )
     }
     
     
@@ -110,9 +125,8 @@ struct RecipeSearchView: View {
                                     .frame(width: 35, height: 35)
                                     .foregroundColor(.blue)
                             }).padding(.horizontal, 10).navigationDestination(isPresented: $isButton){
-                                RecipeDetailsView(recipe: recipe)
-                                Text("")
-                                    .hidden()
+                                RecipeDetailsView(recipe: selectedRecipe)
+                                Text("").hidden()
                             }
 
                         }
