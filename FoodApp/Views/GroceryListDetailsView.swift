@@ -23,16 +23,23 @@ struct GroceryListDetailsView: View {
         ChecklistItem(name: "Soccer practice", quantidade: 4),
         ChecklistItem(name: "Eat ice cream", quantidade: 55, isChecked: true),
     ]
-    //   @StateObject var x : MVShopList
+    
     @State var usuario: Pessoa? = nil
     
+    @State var add_sheet: Bool = false
+    
+    @StateObject var API = MVShopList()
     
      func deleteListItem(whichElement: IndexSet) {
         self.usuario?.compras.remove(atOffsets: whichElement)
+         User.usuario.compras = self.usuario!.compras
+         API.editUser(obj: User.usuario)
         }
     
      func moveListItem(whichElement: IndexSet, destination: Int) {
         self.usuario?.compras.move(fromOffsets: whichElement, toOffset: destination)
+         User.usuario.compras = self.usuario!.compras
+         API.editUser(obj: User.usuario)
         }
     
     var body: some View {
@@ -50,6 +57,8 @@ struct GroceryListDetailsView: View {
                             .onTapGesture {
                                 if let matchingIndex = self.usuario!.compras.firstIndex(where: { $0.name == checklistItem.name }) {
                                     self.usuario?.compras[matchingIndex].isChecked!.toggle()
+                                    User.usuario.compras = self.usuario!.compras
+                                    API.editUser(obj: User.usuario)
                                 }
                             }
                         }
@@ -58,17 +67,23 @@ struct GroceryListDetailsView: View {
                     }
                     .navigationBarItems(trailing: HStack{
                         EditButton()
+                        Button("Add"){
+                            print("funcionou")
+                            add_sheet.toggle()
+                        }
                     })
                     .navigationBarTitle("Lista de compras")
                 }
             }.onAppear(){
-                
+                API.fetch(email: User.usuario.email!)
                 print(User.usuario)
                 
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: true){ a in
                     self.usuario = (User.usuario)
                     a.invalidate()
                 }
+            }.sheet(isPresented: $add_sheet){
+                adicionarItemSheet()
             }
         }
     }
