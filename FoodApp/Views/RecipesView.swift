@@ -119,6 +119,9 @@ struct RecipeSearchView: View {
                     }
                 }
             }
+            .onAppear {
+                searchForRecipes()
+            }
         }
     }
     /* codigo geral sem o mocado

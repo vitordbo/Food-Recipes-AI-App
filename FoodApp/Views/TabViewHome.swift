@@ -29,9 +29,9 @@ struct TabViewHome: View {
                          Label("Lista de compras", systemImage: "checklist")
                      }
                  
-                 FriendsView()
+                 FavoritesView()
                      .tabItem {
-                     Label("Amigos", systemImage: "person.3.fill")
+                     Label("Favoritas", systemImage: "heart.fill")
                  }
             }.toolbarBackground(.visible, for: .tabBar)
         }
