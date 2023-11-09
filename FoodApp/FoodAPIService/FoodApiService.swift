@@ -49,6 +49,9 @@ struct EdamamRecipe: Decodable {
     let ingredients: [EdamamIngredient] // Change the type to an array of ingredients
     let url: String
     let image: String
+    let calories: Double
+    let totalTime: Double
+    let totalNutrients: TotalNutrients
 }
 
 struct EdamamIngredient: Decodable { // Define a separate ingredient model
@@ -57,3 +60,67 @@ struct EdamamIngredient: Decodable { // Define a separate ingredient model
     let measure: String?
     // Add other properties as needed
 }
+
+struct TotalNutrients: Decodable {
+    let ENERC_KCAL: Enerc_Kcal
+    let FASAT: Fasat
+    let FATRN: Fatrn
+    let CHOCDF: Chocdf
+    let PROCNT: Procnt
+    let NA: Na
+    let FIBTG: Fibtg
+    
+}
+
+struct Enerc_Kcal: Decodable{
+    let label: String
+    let quantity: Double?
+    let unit: String
+}
+
+// gordura saturada
+struct Fasat: Decodable{
+    let label: String
+    let quantity: Double?
+    let unit: String
+}
+
+// gordura trans
+struct Fatrn: Decodable{
+    let label: String
+    let quantity: Double?
+    let unit: String
+}
+
+// fibras
+struct Fibtg: Decodable{
+    let label: String
+    let quantity: Double?
+    let unit: String
+}
+
+// carbs
+struct Chocdf: Decodable{
+    let label: String
+    let quantity: Double?
+    let unit: String
+}
+
+// proteinas
+struct Procnt: Decodable{
+    let label: String
+    let quantity: Double?
+    let unit: String
+}
+
+// sodio
+struct Na: Decodable{
+    let label: String
+    let quantity: Double?
+    let unit: String
+}
+
+
+
+
+

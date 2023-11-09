@@ -12,7 +12,7 @@ struct FriendsView: View {
         ZStack{
             VStack {
                 ScrollView {
-                    Text("Veja o que seus amigos estao fazendo").font(.title).fontWeight(.bold)
+                    Text("Veja o que seus amigos estão fazendo").font(.title).fontWeight(.bold)
                     
                     // colocar em um for each para aparecer varias diferentes
                     // colocar scroll view tbm (talvez no vStack)

@@ -19,6 +19,7 @@ struct LoginPage: View {
                     TextField("Senha", text: $password).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)
                     
+                    // gabriel disse que ficava melhor com um navigation link
                     Button(action: {
                         API.fetch(email: username)
                         isButton = true

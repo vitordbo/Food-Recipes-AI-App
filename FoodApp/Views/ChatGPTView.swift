@@ -13,6 +13,7 @@ struct ChatGPTView: View {
     @State var messageText: String = ""
     let openAIService = OpenAIService()
     @State var cancellables = Set<AnyCancellable>()
+    @State private var isLoading = false
     
     var body: some View {
         VStack {
@@ -27,21 +28,25 @@ struct ChatGPTView: View {
                 TextField("Digite o que deseja", text: $messageText) {
                     
                 }
-                    .padding()
-                    .background(.gray.opacity(0.1))
-                    .cornerRadius(12)
+                .padding()
+                .background(.gray.opacity(0.1))
+                .cornerRadius(12)
                 Button{
                     sendMessage()
                 } label: {
-                    Text("Enviar")
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(.blue)
-                        .cornerRadius(12)
+                    if isLoading {
+                        ProgressView()
+                    } else {
+                        Text("Enviar")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(.blue)
+                            .cornerRadius(12)
+                    }
                 }
             }
+            .padding()
         }
-        .padding()
     }
     
     // funçao de visualização
@@ -50,7 +55,7 @@ struct ChatGPTView: View {
             if message.sender == .me {Spacer() }
             Text(message.content)
                 .foregroundColor(message.sender == .me ? .white: .black) // ternario chat ou pessoa
-                .padding()
+                .padding(15)
                 .background(message.sender == .me ? .blue: .gray.opacity(0.1))
                 .cornerRadius(16)
             if message.sender == .chat {Spacer() }
@@ -58,18 +63,21 @@ struct ChatGPTView: View {
     }
     
     func sendMessage() {
+        isLoading = true
+
         let myMessage = ChatMessage(id: UUID().uuidString, content: messageText, dateCreated: Date(), sender: .me)
         chatMessages.append(myMessage)
         openAIService.sendMessage(message: messageText).sink { completion in
             //handle error
         } receiveValue: { response in
+            isLoading = false // Defina isLoading como falso
             guard let textResponse = response.choices.first?.text.trimmingCharacters(in: .whitespacesAndNewlines.union(.init(charactersIn: "/"))) else {return }
             let gptMessage =  ChatMessage(id: response.id, content: textResponse, dateCreated: Date(), sender: .chat)
             chatMessages.append(gptMessage)
-
         }
         .store(in: &cancellables)
         
+
         messageText = ""
     }
 }
