@@ -5,10 +5,10 @@ import Foundation
      static var usuario: Pessoa = Pessoa(_id: "", _rev: "", email: "", compras: [Compras(name: "", quantity: 0, isChecked: false)])
 }
 
-struct Pessoa : Decodable {
-    let _id: String?
-    let _rev: String?
-    let email: String?
+struct Pessoa : Decodable, Encodable {
+    var _id: String?
+    var _rev: String?
+    var email: String?
     var compras: [Compras]
 }
 
@@ -18,9 +18,9 @@ extension Pessoa : Identifiable{
     }
 }
 
-struct Compras : Decodable {
-    let name: String?
-    let quantity: Int?
+struct Compras : Decodable, Encodable {
+    var name: String?
+    var quantity: Int?
     var isChecked: Bool?
 }
 
@@ -55,6 +55,47 @@ class MVShopList : ObservableObject {
         task.resume()
         
     }
+    
+    func editUser(obj: Pessoa){
+        
+            guard let url = URL(string: "http://127.0.0.1:1880/api/v1/compras/editar") else { return }
+                
+                var request = URLRequest(url: url)
+                request.httpMethod = "PUT"
+                
+                do {
+                    let data = try JSONEncoder().encode(obj)
+                    
+                    print(data)
+                    
+                    request.httpBody = data
+                } catch {
+                    print("Error encoding to JSON: \(error.localizedDescription)")
+                }
+            
+                
+                
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        print("Error deleting resource: \(error.localizedDescription)")
+                        return
+                    }
+                    
+                    guard let httpResponse = response as? HTTPURLResponse else {
+                        print("Error deleting resource: invalid response")
+                        return
+                    }
+                    
+                    if httpResponse.statusCode == 200 {
+                        print("Resource deleted successfully")
+                    } else {
+                        print("Error deleting resource: status code \(httpResponse.statusCode)")
+                    }
+                }
+                
+                task.resume()
+
+        }
     
     func findUser(email: String) {
         for pessoa in lista {
