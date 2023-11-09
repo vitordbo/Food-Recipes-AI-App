@@ -2,17 +2,26 @@
 import Foundation
 
  struct User {
-     static var usuario: Pessoa = Pessoa(email: "")
+     static var usuario: Pessoa = Pessoa(_id: "", _rev: "", email: "", compras: [Compras(name: "", quantity: 0, isChecked: false)])
 }
 
-struct Pessoa : Decodable, Hashable {
+struct Pessoa : Decodable {
+    let _id: String?
+    let _rev: String?
     let email: String?
+    var compras: [Compras]
 }
 
-struct Compras : Decodable, Hashable {
+extension Pessoa : Identifiable{
+    public var id : String{
+        _id!
+    }
+}
+
+struct Compras : Decodable {
     let name: String?
     let quantity: Int?
-    let isChecked: Bool?
+    var isChecked: Bool?
 }
 
 class MVShopList : ObservableObject {
