@@ -13,7 +13,7 @@ class OpenAIService {
     let baseURL = "https://api.openai.com/v1/"
     
     func sendMessage(message: String) -> AnyPublisher<OpenAICompletionsResponse, Error> {
-        let body = OpenAICompletionsBody(model: "text-davinci-003", prompt: message, temperature: 0.3, max_tokens: 256)
+        let body = OpenAICompletionsBody(model: "text-davinci-003", prompt: message, temperature: 0.3, max_tokens: 1024)
         let headers: HTTPHeaders = [
             "Authorization": "Bearer \(Constants.openAIAPIKey)"
         ]

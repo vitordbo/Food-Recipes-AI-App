@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 struct HomeView: View {
     @State private var searchText = ""
     @State private var isButton = false
@@ -62,7 +68,7 @@ struct HomeView: View {
                                    EdamamIngredient.init(text: "Azeite de oliva a gosto", quantity: 0, measure: "a gosto"),
                                    EdamamIngredient.init(text: "Sal e pimenta a gosto", quantity: 0, measure: "a gosto")],
                      url: "https://www.tudogostoso.com.br/receita/54321-salada-de-legumes.html",
-                     image: "https://edamam-product-images.s3.amazonaws.com/web-img/865/8659574d80cda2e6cac2d136674f3b60.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQCquJ943sIOulaTO%2Bt6zvWCI5X8Iy51EYb7CyGMbKkiFgIgVAu0Dsvi3YovoDeafzM3YgZJzrPbX%2FAmhEvg5BiI1koqwQUI4P%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgwxODcwMTcxNTA5ODYiDDqSl11XQlvpTcC81CqVBXIoUjlPRRTt90wpqFd8zXqenOBrL4zQMdDcsXaWyMZKtnNFgw51ZYjiGq60JQsgswusI7crCJR03dAzaYjh0HzL234u1PxcMECLGjmbruJZtB%2F4fyr7a%2Bgu75UYXqf%2BgWv1g%2FG03WrFYVhFL7OwOjdyF2E5khZo8cWE7u0QEHoPjmOf%2Bf3CFrDrIG5Pakimj0dDGZHfEA6pRQd7pTWzeYdRX2F85rdpmcjuiEWRxhmNAesArjFGvnJOfv1tP3xfe4dUr0nTf6JdvwlnwXey8qDdecpSis%2FVgUq2yVTsMkBH6mNc%2FPdzf9C3vINR3imAdwwd3IvEWxcpaPf6GGj2o%2FcgqsP9K89p8TKuqDTAEkyv86AlhUouEzSSGaPWx448gE27Wkpf6b5lJE2DJTg0wXCPXuih%2FyfGvjFnMLA9Sx2HfHjqMsZb6HnMOqGTp0Ga6PtGKiLJfuy5VK%2FNeZNSYoI1eTlKfdeVZDyfTuNZkeQVG9hRb5tdXwOUWGUQReOZQAY1G1HPOp3ZILBqUfXz0BgEfnSZueaWeBeRJ0r1rYl6fuIM4bIl%2FQWjkvI7WYCAtR7SYWjaPrf38mKNr1Zba4OMqLfaWRFdmBkZHMv%2BnoB3PB8Kc%2FDKE7KCIE0VuGJCFEibedshWEmcCUF8BI1LhTnjDqpZRfDP57thPp1IQl5nZmKV3QNhrFZk%2Bd6tiiM4ihBf9BjOsfAx4ox%2FZ7CUcqikM3b%2BPFAQIr5SyD7ZZo81fSpKHfZYyCKI8c5rKB%2Fqq9qAN%2BW60jXEOYYC%2FeJLyThMj0rzfMoUYE1X7fzbgxCR%2FuT4XX17gaWb5IYhL1QmZP8W%2BKnd8PW%2B9RaLUvU4M5HzepkrwH3Wt2HePHXbYBPZ7Ro2krQw68G1qgY6sQETEyQ5LRbAc52hfbVeqKoCVE%2FC62m573nOr5y4SdZVpcgrRx3fh0u4cfnrzg7wJvpQ%2FtZpytdFJ4AEzopY%2BTvPJ6t%2B9YSV7sDZFTSlGncltgP%2BHRy57Y9QhdoP%2B2gz%2BqjBFGdS0JD%2FXUgRUnRsVZr4MkojG1SuGZiwi0J%2B166TqWP12FAkNA82Tu2GNeRXaz1IIJ8pU90487mJjvTyTC2i%2FR3%2FZPugGd1upKnp5AuTxOo%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231110T001208Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFCWCHG66C%2F20231110%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=84d18466f5592ec4f7ddfb0a3dd240c3145f751c04077df4ea5b49bb9c4608ab",
+                     image: "https://edamam-product-images.s3.amazonaws.com/web-img/865/8659574d80cda2e6cac2d136674f3b60.jpg?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEKn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJGMEQCIGqyWdQfFWftHOkzah6EnyWOO4NwhAFzU4k3zl5WqiRuAiAd0qEDReQydq4Hfutt8%2FeoKBKdAJSJUOc9fpxhU30wOCrCBQji%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDE4NzAxNzE1MDk4NiIMYD8DqvXJyWg5FnubKpYFfhKT6agOj%2BTuckLClaahVz2oAowwxPA3y%2B%2FCU92bU0tQB6zL%2Bk%2B0ZjlFbRqK1wiVQb8Er%2F7U9eeP4d3ZddH1Voad9i6%2FStc1jZdTUTqWR7Rw8EJ%2BjewpFRbGibtMiuPaqijwanDU6XemD1ekkmvAACDXVO9wl%2BEZ3Pv4tPXSTlG41%2BExHVUEO6hgpUqTzKA2QZm9Q%2FiWYGt8XuCTGjeQnuRc7pdCboxUR4RED7TJTvwI7M6Ld3PB3UIDnOJcQgWLW1I1hmIxhUe%2Bi7vHNeQ1x51zQuB7YEA9m0mGwbAaUI3MTm5%2B8IJr57QTq%2F860ZF2t4hN7Odc4f%2BglVVTODxEe5Jy%2BL5e0lnjcqbjTAxe5IdHsveCwZ0qZJXYBiTztawT7Q3m%2B8nIFxW%2FPt5%2FFkyR3U4p4esX0QVtsi94ik2nSBD%2BCBsFwcuZ8wp1aFazWT1XoOHzGnK5LNprqEyzurCVHh%2FOO3eSE1ehbcC7h8sJi078fDoRv5y%2BrAWv%2FUTOQJVXO8JQhvs%2BTFe8NMA4yS8wC26lU%2FJbjKElO1GjTnbzDXlyyTI%2FkhbJ32Ox66UvpvK1P0qR1%2BZIJwDqp7Owk6u0pLkq%2Fli9gufLM71sLNeNkJhDEcuurGBhRKQAqGAh%2FwfMld1dgifp8F3rwLzeiJ2tYTgLR2a7I5jNMV2qtsPKPU8kRmVtzFH1l0eRlcvdZ8JQYTFE9rbbLeJM9lJ2eNjCsIPa2OnRrAh%2BlIXmoPxEUBn95G0XFRohqzMSUvW38kxtBO9Zzk8YKJ59mJvVqiHFCNyJlOdYXr%2Fe4aDAL1o9k30h5bSLqCq9xDuAh%2FN3IIvMNEMsUwxodwn1AO99Dh%2Fa3Jp24aQ%2Fu1g4QiSK04I7xWXeD%2BiKkMAwsfm1qgY6sgEsT6oakYK2mwyHOd3Gx4lpf%2B1wgn0Xx5IP8zadv3Kpw0OO0RY9l9iTpmheLaQNcwKXF5PYfrGskSq1u3nPeoZEGJcDWSzVOZv%2FrkArMeLU%2F1g9vNakvjNptooQfZi4bCm%2BJRg5QzvkUCX5K%2BJpQ3fo8UPFaBFpJTp8TXjDCbz3Ju46ZOfFScuWMZ24kfPjlrqKIkCSRoPyfm1bUVNDP1QXbA5ybGCjeLgFU62sQHmdrakZ&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20231110T012435Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIASXCYXIIFGLJH6WHA%2F20231110%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=e20845e834b21d55537f0a1b34b6e175c61c9e344f01efa8db0de4efc4189692",
                      calories: 210,
                      totalTime: 15,
                      totalNutrients: TotalNutrients(
@@ -77,13 +83,18 @@ struct HomeView: View {
         )
     ]
 
+  
     
     var body: some View {
         ZStack{
             ScrollView {
                 VStack {
                     HStack{
-                        TextField( "Pesquise qualquer receita",text: $searchText).multilineTextAlignment(.center)
+                        TextField( "Pesquise qualquer receita",text: $searchText) {
+                            // Called when the user tap the return button
+                            // see `onCommit` on TextField initializer.
+                            UIApplication.shared.endEditing()
+                        }.multilineTextAlignment(.center)
                             .font(.title3)
                             .padding(.horizontal,10)
                             .textFieldStyle(.roundedBorder)
