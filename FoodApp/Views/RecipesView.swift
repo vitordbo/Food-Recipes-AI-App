@@ -107,19 +107,9 @@ struct RecipeSearchView: View {
                             
                             AsyncImage(url: URL(string: recipe.image)).frame(width: 350)
                             
-                            
                         }
                         HStack(spacing: 10) {
-                            Button(action: {
-                                isButton = true
-                            }, label: {
-                                
-                                Image(systemName: "heart.fill")
-                                    .resizable()
-                                    .frame(width: 35,height: 35)
-                                    .foregroundColor(.red)
-                            })
-                            
+            
                             Button(action: {
                                 if let url = URL(string: recipe.url) {
                                             UIApplication.shared.open(url)

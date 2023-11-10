@@ -8,10 +8,9 @@ struct LoginPage: View {
     
     var body: some View {
             ZStack{
-                Color(.red).opacity(0.7).ignoresSafeArea()
+                Color(.orange).opacity(0.835).ignoresSafeArea()
                 VStack{
-                    Image("Image").resizable().frame(width: 150,height: 150).scaleEffect(1)
-                    Text("Login").font(.title).foregroundColor(.white).fontWeight(.bold)
+                    Image("Image").resizable().frame(width: 150,height: 150).scaleEffect(2).padding(.bottom,70);                    Text("Login").font(.title).foregroundColor(.white).fontWeight(.bold)
                     
                     TextField("Email", text: $username).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)

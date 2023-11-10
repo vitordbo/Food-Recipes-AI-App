@@ -28,11 +28,6 @@ struct TabViewHome: View {
                      .tabItem {
                          Label("Lista de compras", systemImage: "checklist")
                      }
-                 
-                 FavoritesView()
-                     .tabItem {
-                     Label("Favoritas", systemImage: "heart.fill")
-                 }
             }.toolbarBackground(.visible, for: .tabBar)
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImageSlider: View {
     
-    private let images = ["Image", "lasanha", "fricasse", "1"]
+    private let images = ["lasanha", "fricasse", "coxinha"]
     
     var body: some View {
         TabView {
