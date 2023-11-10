@@ -15,7 +15,7 @@ struct LoginPage: View {
                     TextField("Email", text: $username).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)
                     
-                    TextField("Senha", text: $password).font(.title3).padding(.horizontal,30)
+                    SecureField("Senha", text: $password).font(.title3).padding(.horizontal,30)
                         .textFieldStyle(.roundedBorder)
                     
                     // gabriel disse que ficava melhor com um navigation link

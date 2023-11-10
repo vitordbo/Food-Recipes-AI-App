@@ -28,8 +28,10 @@ class MVShopList : ObservableObject {
     
     @Published var lista: [Pessoa] = []
     
+//    192.168.128.142
+    
     func fetch(email: String){
-        guard let url = URL(string: "http://127.0.0.1:1880/api/v1/findAll") else {
+        guard let url = URL(string: "http://192.168.128.142:1880/api/v1/findAll") else {
             return
         }
         
@@ -58,7 +60,7 @@ class MVShopList : ObservableObject {
     
     func editUser(obj: Pessoa){
         
-            guard let url = URL(string: "http://127.0.0.1:1880/api/v1/compras/editar") else { return }
+            guard let url = URL(string: "http://192.168.128.142:1880/api/v1/compras/editar") else { return }
                 
                 var request = URLRequest(url: url)
                 request.httpMethod = "PUT"
